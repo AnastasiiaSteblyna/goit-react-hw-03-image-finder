@@ -76,6 +76,7 @@ img {
   width: 48px;
   height: 48px;
   border: 0;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/650/650154.png');
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
@@ -103,6 +104,18 @@ img {
 .searchformInput::placeholder {
   font: inherit;
   font-size: 18px;
+}
+
+.searchformButtonLabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
 }
 
 /*
@@ -191,4 +204,8 @@ img {
 .Button:hover,
 .Button:focus {
   background-color: #303f9f;
+}
+
+.Loader {
+  margin: 0 auto;
 }

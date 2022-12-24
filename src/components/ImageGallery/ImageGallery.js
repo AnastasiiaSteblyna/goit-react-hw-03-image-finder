@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Notiflix from 'notiflix';
 import { nanoid } from 'nanoid';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
+import Loader from 'components/Loader/Loader';
 
 class ImageGallery extends Component {
   state = {
@@ -68,7 +69,7 @@ class ImageGallery extends Component {
 
     return (
       <div className={css.ImageGallery} onClick={this.toggleModal}>
-        {loading && <div>Loading...</div>}
+        {loading && <Loader />}
         {data && (
           <ul className={css.gallery}>
             {images.map(({ id, largeImageURL, webformatURL }) => (
@@ -81,9 +82,9 @@ class ImageGallery extends Component {
             ))}
           </ul>
         )}
-        {showModal && (
+        {/* {showModal && (
           <Modal onClose={this.toggleModal} largeImageURL={largeImageURL} />
-        )}
+        )} */}
       </div>
     );
   }

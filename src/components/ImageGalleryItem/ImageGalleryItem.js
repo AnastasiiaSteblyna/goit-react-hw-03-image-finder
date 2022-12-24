@@ -1,5 +1,5 @@
 import css from '../../styles/Common.module.css';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class ImageGalleryItem extends Component {
