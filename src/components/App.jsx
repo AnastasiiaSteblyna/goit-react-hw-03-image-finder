@@ -27,30 +27,31 @@ export class App extends Component {
     const prevSearchData = prevState.searchData;
     const { searchData, page, images } = this.state;
     if (prevPage !== page || prevSearchData !== searchData) {
-      try {
-        this.setState({ isLoading: true });
-        const response = fetchImagesWithQuery(searchData, page);
-        response.then(data => {
+      this.setState({ isLoading: true });
+      const response = fetchImagesWithQuery(searchData, page);
+      response
+        .then(data => {
           data.data.hits.length === 0
-            ? toast.error('Nothing found')
+            ? toast.error('Not found')
             : data.data.hits.forEach(({ id, webformatURL, largeImageURL }) => {
                 !images.some(image => image.id === id) &&
                   this.setState(({ images }) => ({
                     images: [...images, { id, webformatURL, largeImageURL }],
                   }));
               });
+        })
+        .catch(error => {
+          toast.error(`Search failed with: ${error.message}`);
+        })
+        .finally(() => {
           this.setState({ isLoading: false });
         });
-      } catch (error) {
-        this.setState({ error, isLoading: false });
-      } finally {
-      }
     }
   }
 
   onSubmit = searchData => {
     if (searchData.trim() === '') {
-      return toast.error('Enter the meaning for search');
+      return toast.error('Enter the query');
     } else if (searchData === this.state.searchData) {
       return;
     }
